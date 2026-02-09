@@ -1,12 +1,15 @@
 using UnityEngine;
 
-public enum VehicleType
+namespace Miscellaneous
 {
-    Plane,
-    Helicopter
-}
+    public enum VehicleType
+    {
+        Plane,
+        Helicopter
+    }
 
-public static class GameSettings
-{
-    public static VehicleType SelectedVehicle;
+    public static class GameSettings
+    {
+        public static VehicleType SelectedVehicle;
+    }
 }
