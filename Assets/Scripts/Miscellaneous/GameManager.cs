@@ -1,3 +1,5 @@
+using Armament;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Miscellaneous
@@ -12,6 +14,9 @@ namespace Miscellaneous
         [SerializeField] private Transform planeZone;
         [SerializeField] private Transform helicopterZone;
 
+        [Header("Pool")]
+        [SerializeField] private ObjectPool pool;
+
         void Start()
         {
             SpawnSelectedVehicle();
@@ -21,14 +26,23 @@ namespace Miscellaneous
         {
             switch (GameSettings.SelectedVehicle)
             {
-                case VehicleType.Plane:
-                    Instantiate(planePrefab, planeZone.position, planeZone.rotation);
-                    break;
-
-                case VehicleType.Helicopter:
-                    Instantiate(helicopterPrefab, helicopterZone.position, helicopterZone.rotation);
-                    break;
+                case VehicleType.Plane: SpawnPlane(); break;
+                case VehicleType.Helicopter: SpawnHelicopter(); break;
             }
+        }
+
+        private void SpawnPlane()
+        {
+            var planeGO = Instantiate(planePrefab, planeZone.position, planeZone.rotation);
+
+            var gun = planeGO.GetComponentInChildren<Gun>();
+
+            gun.Init(pool);
+        }
+
+        private void SpawnHelicopter()
+        {
+            Instantiate(helicopterPrefab, helicopterZone.position, helicopterZone.rotation);
         }
     }
 }
