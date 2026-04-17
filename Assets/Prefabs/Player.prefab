@@ -351,4 +351,4 @@ MonoBehaviour:
   _acceleration: 15
   _rollSpeed: 60
   _pitchSpeed: 50
-  _yawSpeed: 40
+  _yawSpeed: 10
