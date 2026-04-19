@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC.NPCController
   _combustion: {fileID: 3111254002061259863}
+  _minHeight: 50
   _minSpeed: 10
   _averageSpeed: 50
   _maxSpeed: 100

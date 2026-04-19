@@ -26,6 +26,9 @@ namespace NPC
         [Header("VFX")]
         [SerializeField] private GameObject _combustion;
 
+        [Header("Height")]
+        [SerializeField] private float _minHeight;
+
         [Header("Speed")]
         [SerializeField] private float _minSpeed;
         [SerializeField] private float _averageSpeed;
@@ -40,6 +43,9 @@ namespace NPC
         private float _currentSpeed;
         private float _targetSpeed;
         private StateMachine _fsm;
+
+        public float CurrentHeight => transform.position.y;
+        public float MinHeight => _minHeight;
 
         private void Awake()
         {
@@ -123,6 +129,16 @@ namespace NPC
         public void YawRight()
         {
             transform.Rotate(Vector3.up * _yawSpeed * Time.deltaTime, Space.Self);
+        }
+
+        public bool IsTooLow()
+        {
+            return CurrentHeight <= MinHeight;
+        }
+
+        public bool IsNearGround()
+        {
+            return CurrentHeight <= MinHeight + 50f;
         }
     }
 }
